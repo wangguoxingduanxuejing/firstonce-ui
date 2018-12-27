@@ -2,14 +2,14 @@ import fetch from 'utils/fetch';
 
 export function getAllGroupTypes() {
   return fetch({
-    url: '/api/admin/groupType/all',
+    url: '/api/role/groupTypes',
     method: 'get'
   });
 }
 
 export function fetchTree(query) {
   return fetch({
-    url: '/api/admin/group/tree',
+    url: '/api/role/groupTree',
     method: 'get',
     params: query
   });
@@ -18,7 +18,7 @@ export function fetchTree(query) {
 
 export function addObj(obj) {
   return fetch({
-    url: '/api/admin/group',
+    url: '/api/role/addGroup',
     method: 'post',
     data: obj
   });
@@ -26,21 +26,21 @@ export function addObj(obj) {
 
 export function getObj(id) {
   return fetch({
-    url: '/api/admin/group/' + id,
+    url: '/api/role/getGroupInfo/' + id,
     method: 'get'
   });
 }
 
 export function delObj(id) {
   return fetch({
-    url: '/api/admin/group/' + id,
+    url: '/api/role/deleteGroup/' + id,
     method: 'delete'
   });
 }
 
 export function putObj(id, obj) {
   return fetch({
-    url: '/api/admin/group/' + id,
+    url: '/api/role/updateGroup/' + id,
     method: 'put',
     data: obj
   });
@@ -48,14 +48,14 @@ export function putObj(id, obj) {
 
 export function getUsers(id) {
   return fetch({
-    url: '/api/admin/group/' + id + '/user',
+    url: '/api/role/group/' + id + '/user',
     method: 'get'
   });
 }
 
 export function modifyUsers(id, data) {
   return fetch({
-    url: '/api/admin/group/' + id + '/user',
+    url: '/api/role/group/' + id + '/user',
     method: 'put',
     params: data
   });
@@ -64,7 +64,7 @@ export function modifyUsers(id, data) {
 
 export function removeElementAuthority(id, data) {
   return fetch({
-    url: '/api/admin/group/' + id + '/authority/element/remove',
+    url: '/api/role/group/' + id + '/authority/element/remove',
     method: 'post',
     params: data
   });
@@ -72,7 +72,7 @@ export function removeElementAuthority(id, data) {
 
 export function addElementAuthority(id, data) {
   return fetch({
-    url: '/api/admin/group/' + id + '/authority/element/add',
+    url: '/api/role/group/' + id + '/authority/element/add',
     method: 'post',
     params: data
   });
@@ -80,14 +80,14 @@ export function addElementAuthority(id, data) {
 
 export function getElementAuthority(id) {
   return fetch({
-    url: '/api/admin/group/' + id + '/authority/element',
+    url: '/api/role/group/' + id + '/authority/element',
     method: 'get'
   });
 }
 
 export function modifyMenuAuthority(id, data) {
   return fetch({
-    url: '/api/admin/group/' + id + '/authority/menu',
+    url: '/api/role/group/' + id + '/authority/menu',
     method: 'post',
     params: data
   });
@@ -96,7 +96,7 @@ export function modifyMenuAuthority(id, data) {
 
 export function getMenuAuthority(id) {
   return fetch({
-    url: '/api/admin/group/' + id + '/authority/menu',
+    url: '/api/role/group/' + id + '/authority/menu',
     method: 'get'
   });
 }

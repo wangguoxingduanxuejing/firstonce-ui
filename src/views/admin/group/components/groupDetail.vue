@@ -84,7 +84,7 @@ export default {
       treeData: [],
       defaultProps: {
         children: 'children',
-        label: 'label'
+        label: 'name'
       },
       labelPosition: 'right',
       groupManager_btn_edit: false,
@@ -96,7 +96,7 @@ export default {
         code: undefined,
         name: undefined,
         description: undefined,
-        groupType: this.type
+        group_type: this.type
       },
       currentId: -1
     }
@@ -122,20 +122,21 @@ export default {
   methods: {
     getList() {
       fetchTree(this.listQuery).then(data => {
-        this.treeData = data;
+        this.treeData = data.data;
       });
     },
     filterNode(value, data) {
       if (!value) return true;
-      return data.label.indexOf(value) !== -1;
+      return data.name.indexOf(value) !== -1;
     },
     getNodeData(data) {
       if (!this.formEdit) {
         this.formStatus = 'update';
       }
-      getObj(data.id).then(response => {
-        this.form = response.data;
-      });
+      // getObj(data.id).then(response => {
+      //   this.form = response.data;
+      // });
+      this.form = data;
       this.currentId = data.id;
     },
     handlerEdit() {
@@ -196,11 +197,11 @@ export default {
     },
     resetForm() {
       this.form = {
-        parentId: this.currentId,
+        parent_id: this.currentId,
         code: undefined,
         name: undefined,
         description: undefined,
-        groupType: this.type
+        group_type: this.type
       };
     },
     handlerUser() {
