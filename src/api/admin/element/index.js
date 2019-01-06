@@ -9,6 +9,15 @@ export function page(query) {
   });
 }
 
+//获取按钮权限列表不分页
+export function getElementById(query) {
+  return fetch({
+    url: '/api/menu/getElementById',
+    method: 'get',
+    params: query
+  });
+}
+
 //添加按钮权限
 export function addObj(obj) {
   return fetch({

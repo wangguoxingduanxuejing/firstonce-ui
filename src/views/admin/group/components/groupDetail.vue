@@ -167,7 +167,9 @@ export default {
             duration: 2000
           });
         });
-      });
+      }).catch(err=>{
+        console.log(err);
+      })
     },
     update() {
       putObj(this.form.id, this.form).then(() => {

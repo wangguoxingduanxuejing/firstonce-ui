@@ -50,7 +50,7 @@ import {
   fetchTree
 } from 'api/admin/menu/index';
 import {
-  page
+  getElementById
 } from 'api/admin/element/index';
 import {
   removeElementAuthority,
@@ -103,7 +103,8 @@ export default {
   methods: {
     getList() {
       fetchTree(this.listQuery).then(data => {
-        this.treeData = data;
+        console.log(data);
+        this.treeData = data.data;
         this.initAuthoritys();
       });
     },
@@ -113,18 +114,22 @@ export default {
     },
     getNodeData(data) {
       this.listQuery.menuId = data.id;
-      page(this.listQuery).then(response => {
-        this.list = response.data.rows;
+      getElementById(this.listQuery).then(response => {
+        // console.log(response);
+        this.list = response.data;
         getElementAuthority(this.groupId).then(data => {
+          // console.log(data);
           const obj = {};
+          // console.log(this.list);
           for (let i = 0; i < this.list.length; i++) {
             obj[this.list[i].id] = this.list[i];
           }
           const toggle = {};
+          // console.log( data.data);
           for (let i = 0; i < data.data.length; i++) {
-            const id = data.data[i]
+            const id = data.data[i].resource_id;
             if (obj[id] !== undefined && toggle[id] === undefined) {
-              this.$refs.elementTable.toggleRowSelection(obj[data.data[i]]);
+              this.$refs.elementTable.toggleRowSelection(obj[data.data[i].resource_id]);
               toggle[id] = true;
             }
           }
@@ -137,6 +142,7 @@ export default {
       return node.id;
     },
     handleSelectionChange(val, row) {
+      console.log(val,row);
       let flag = true;
       for (let i = 0; i < val.length; i++) {
         if (val[i].id === row.id) {
@@ -177,7 +183,7 @@ export default {
       getMenuAuthority(this.groupId).then(data => {
         const result = [];
         for (let i = 0; i < data.data.length; i++) {
-          result.push(data.data[i].id);
+          result.push(data.data[i].resource_id);
         }
         this.$refs.menuTree.setCheckedKeys(result);
       });

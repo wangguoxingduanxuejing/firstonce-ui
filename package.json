@@ -1,5 +1,5 @@
 {
-  "name": "AG-Admin",
+  "name": "firstonce-ui",
   "version": "1.2.0",
   "description": "A Vue.js admin",
   "author": "Ace<463540703@qq.com>",
@@ -85,7 +85,7 @@
     "webpack-dev-middleware": "1.10.2",
     "webpack-hot-middleware": "2.18.0",
     "webpack-merge": "4.1.0",
-	"babel-polyfill": "^6.22.0"
+    "babel-polyfill": "^6.22.0"
   },
   "engines": {
     "node": ">= 4.0.0",

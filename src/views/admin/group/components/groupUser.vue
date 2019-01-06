@@ -52,30 +52,39 @@ export default {
     ])
   },
   methods: {
+    // 此处借用了一个现成的api 所以传入了一个虚拟的分页
     remoteMemberMethod(query) {
       if (query !== '') {
         this.loading = true;
         this.loading = false;
         page({
+          page:1,
+          limit:100,
           name: query
         }).then(response => {
-          this.mItems = response.data.rows;
-          this.total = response.data.total;
+          console.log(1);
+          console.log(response);
+          this.mItems = response.rows;
+          this.total = response.total;
           this.loading = false;
         });
       } else {
         this.mItems = [];
       }
     },
+     // 此处借用了一个现成的api 所以传入了一个虚拟的分页
     remoteLeaderMethod(query) {
       if (query !== '') {
         this.loading = true;
         this.loading = false;
         page({
+          page:1,
+          limit:100,
           name: query
         }).then(response => {
-          this.lItems = response.data.rows;
-          this.total = response.data.total;
+          console.log(2);
+          this.lItems = response.rows;
+          this.total = response.total;
           this.loading = false;
         });
       } else {
@@ -83,6 +92,7 @@ export default {
       }
     },
     onSubmit() {
+      console.log(this.members);
       const vals = {};
       if (this.members.length > 0) vals.members = this.members.join();
       if (this.leaders.length > 0) vals.leaders = this.leaders.join();
@@ -98,14 +108,15 @@ export default {
     },
     initUsers() {
       getUsers(this.groupId).then(response => {
+        console.log(response);
         this.lItems = response.data.leaders;
         this.mItems = response.data.members;
         const mems = [], leas = [];
         for (let i = 0; i < response.data.members.length; i++) {
-          mems.push(response.data.members[i].id);
+          mems.push(response.data.members[i].user_id);
         }
         for (let i = 0; i < response.data.leaders.length; i++) {
-          leas.push(response.data.leaders[i].id);
+          leas.push(response.data.leaders[i].user_id);
         }
         this.members = mems;
         this.leaders = leas;
