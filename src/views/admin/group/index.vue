@@ -33,8 +33,6 @@ export default {
   methods: {
     fetchData() {
       getAllGroupTypes().then(data => {
-        console.log('----------------------------');
-        console.log(data);
         this.tabMapOptions = data.data;
       });
     }

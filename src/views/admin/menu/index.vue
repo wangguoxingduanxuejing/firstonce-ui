@@ -47,7 +47,7 @@
       </el-form-item>
       <el-form-item label="类型" prop="type">
          <el-select class="filter-item" v-model="form.type"  :disabled="formEdit"  placeholder="请输入资源请求类型">
-          <el-option v-for="item in  typeOptions" :key="item" :label="item" :value="item"> </el-option>
+          <el-option v-for="item in typeOptions" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="排序" prop="orderNum">
@@ -232,7 +232,8 @@ export default {
         orderNum: undefined,
         description: undefined,
         path: undefined,
-        enabled: undefined
+        enabled: undefined,
+        type: undefined
       };
     }
   }

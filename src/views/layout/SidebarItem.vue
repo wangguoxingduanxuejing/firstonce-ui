@@ -15,14 +15,14 @@
 				</template>
 				<template v-for="child in item.children">
 					<sidebar-item class='nest-menu' v-if='child.children&&child.children.length>0' :routes='[child]' :key="child.id"> </sidebar-item>
-					<!-- <router-link v-else :to="'/'+item.code+'/'+child.code" :key="child.id"  class="test"> -->
-						<el-menu-item v-else :index="item.code+'/'+child.code" :key="child.id">
-						<router-link :to="'/'+item.code+'/'+child.code">
+					<router-link v-else :to="'/'+item.code+'/'+child.code" :key="child.id">
+						<el-menu-item :index="item.code+'/'+child.code" :key="child.id">
+						<!-- <router-link :to="'/'+item.code+'/'+child.code"> -->
 							<icon-svg v-if='child.icon' :icon-class="child.icon"></icon-svg>
 							<span>{{child.title}}</span>
-							</router-link>
+							<!-- </router-link> -->
 						</el-menu-item>
-					<!-- </router-link> -->
+					</router-link>
 				</template>
 			</el-submenu>
 
@@ -45,30 +45,6 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 </style>
 <style>
-.sidebar-container{
-	background-color: rgb(48, 65, 86);
-}
-.el-submenu__title{
-	color: rgb(191, 203, 217)!important;
-}
-.el-submenu__title:hover{
-		color: rgb(64, 158, 255)!important;
-		background-color: #1f2d3d!important;
-}
-.el-menu--inline{
-	background-color: #1f2d3d!important;
-}
-
-.el-menu-item{
-	color: rgb(191, 203, 217)!important;
-}
-.el-menu-item:hover{
-	color: rgb(64, 158, 255)!important;
-background-color: #001528!important;
-}
-
-
-
 </style>
 
 
