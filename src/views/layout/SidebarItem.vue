@@ -38,7 +38,12 @@ export default {
     routes: {
       type: Array
     }
-  }
+	},
+	data(){
+		return{
+			test:['用户管理','菜单管理']
+		}
+	}
 };
 </script>
 

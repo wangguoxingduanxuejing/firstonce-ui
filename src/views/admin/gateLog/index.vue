@@ -30,25 +30,25 @@
 </el-table-column>
 <el-table-column width="200px" align="center" label="操作时间"><template scope="scope">
   <span>
-    {{scope.row.crtTime}}</span>
+    {{scope.row.crt_time}}</span>
 </template>
 
 </el-table-column>
 <el-table-column width="200px" align="center" label="操作人ID"><template scope="scope">
   <span>
-    {{scope.row.crtUser}}</span>
+    {{scope.row.crt_user}}</span>
 </template>
 
 </el-table-column>
 <el-table-column width="200px" align="center" label="操作人"><template scope="scope">
   <span>
-    {{scope.row.crtName}}</span>
+    {{scope.row.crt_name}}</span>
 </template>
 
 </el-table-column>
 <el-table-column width="200px" align="center" label="操作主机"><template scope="scope">
   <span>
-    {{scope.row.crtHost}}</span>
+    {{scope.row.crt_host}}</span>
 </template>
 </el-table-column>        
         </el-table>
@@ -93,8 +93,8 @@ export default {
     getList() {
       this.listLoading = true;
       page(this.listQuery).then(response => {
-        this.list = response.data.rows;
-        this.total = response.data.total;
+        this.list = response.rows;
+        this.total = response.total;
         this.listLoading = false;
       })
     },

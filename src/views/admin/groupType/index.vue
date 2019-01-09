@@ -1,7 +1,7 @@
 <template>
 <div class="app-container calendar-list-container">
   <div class="filter-container">
-    <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="姓名或账户" v-model="listQuery.name"> </el-input>
+    <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="编码" v-model="listQuery.name"> </el-input>
     <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
     <el-button class="filter-item" v-if="groupTypeManager_btn_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
   </div>
@@ -87,7 +87,7 @@
 import {
   page,
   addObj,
-  getObj,
+  // getObj,
   delObj,
   putObj
 } from 'api/admin/groupType/index';
@@ -168,8 +168,8 @@ export default {
     getList() {
       this.listLoading = true;
       page(this.listQuery).then(response => {
-        this.list = response.data.rows;
-        this.total = response.data.total;
+        this.list = response.rows;
+        this.total = response.total;
         this.listLoading = false;
       })
     },
@@ -190,11 +190,9 @@ export default {
       this.dialogFormVisible = true;
     },
     handleUpdate(row) {
-      getObj(row.id).then(response => {
-        this.form = response.data;
+        this.form = row;
         this.dialogFormVisible = true;
         this.dialogStatus = 'update';
-      });
     },
     handleDelete(row) {
       this.$confirm('此操作将永久删除, 是否继续?', '提示', {
@@ -217,7 +215,16 @@ export default {
     create(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          addObj(this.form).then(() => {
+          addObj(this.form).then((data) => {
+            if(data&&data.code===1000){
+               this.$notify({
+              title: '成功',
+              message: data.msg,
+              type: 'error',
+              duration: 2000
+            });
+            return;
+            }
             this.dialogFormVisible = false;
             this.getList();
             this.$notify({
